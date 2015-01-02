@@ -30,9 +30,8 @@ def printBoard():
 				pRow += 'O '
 		print pRow
 
-
-
 def checkWinner():
+	'Checks if there is a winner'
 	p1 = True
 	p2 = True
 
@@ -49,10 +48,24 @@ def checkWinner():
 		return 2
 	return 0
 
+def getInput(player):
+	move = input('\n Player {}:'.format(player))
+	n, m = move/1000%10, move/100%10
+	a, b = move/10%10, move%10
+	if isLegalMove(player,n,m,a,b):
+		pass
+		newPlayer = player+1
+		if newPlayer > 2:
+			newPlayer -= 2
+		return newPlayer
+	else:
+		print('\n Illegal Move! \nPlease provide a legal move.\n')
+		return player
 
 # for row in board:
 	# print row
 
 setupBoard()
 printBoard()
+getInput(1)
 # print checkWinner()
