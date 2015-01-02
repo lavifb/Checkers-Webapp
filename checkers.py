@@ -30,6 +30,56 @@ def printBoard():
 				pRow += 'O '
 		print pRow
 
+def canMove(player,m,n):
+	if player == 1:
+		if board[m][n] == 1:
+			if board[m+1][n+1] == 0 or board[m+1][n-1] == 0:
+				return True
+			elif board[m+1][n+1] == 2 and board[m+2][n+2] == 0:
+				return True
+			elif board[m+1][n-1] == 2 and board[m+2][n-2] == 0:
+				return True
+			else:
+				return False
+		else:
+			return False
+	elif player == 2:
+		if board[m][n] == 1:
+			if board[m-1][n+1] == 0 or board[m-1][n-1] == 0:
+				return True
+			elif board[m-1][n+1] == 1 and board[m-2][n+2] == 0:
+				return True
+			elif board[m-1][n-1] == 1 and board[m-2][n-2] == 0:
+				return True
+			else:
+				return False
+		else:
+			return False
+	else:
+		return False
+
+def isLegalMove(player, n, m, a, b):
+	if player != 1 and player != 2:
+		return False
+	if n > 7 or n < 0 or m > 7 or n < 0 or a > 7 or a < 0 or b > 7 or b < 0:
+		return False
+	if board[a][b] == 0:	
+		if player == 1 and board[n][m] == 1:
+			if a == (n+1)%8 and (b == (m+1)%8 or b == (m-1)%8):
+				return True
+			elif a == (n+2)%8 and b == (m+2)%8 and board[(n+1)%8][(m+1)%8] == 2:
+				return True
+			elif a == (n+2)%8 and b == (m-2)%8 and board[(n+1)%8][(m-1)%8] == 2:
+				return True
+		elif player == 2 and board[n][m] == 2:
+			if a == (n-1)%8 and (b == (m+1)%8 or b == (m-1)%8):
+				return True
+			elif a == (n-2)%8 and b == (m+2)%8 and board[(n-1)%8][(m+1)%8] == 1:
+				return True
+			elif a == (n-2)%8 and b == (m-2)%8 and board[(n-1)%8][(m-1)%8] == 1:
+				return True
+	return False
+
 def checkWinner():
 	'Checks if there is a winner'
 	p1 = True
@@ -66,6 +116,7 @@ def getInput(player):
 
 setupBoard()
 printBoard()
+
 pl = 1
 while (1<0):
 	pl = getInput(pl)
@@ -73,3 +124,4 @@ while (1<0):
 		print('Player 1 Wins!')
 	elif checkWinner() == 2:
 		print('Player 2 Wins!')
+
