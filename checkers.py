@@ -63,10 +63,13 @@ def getInput(player):
 		print('\n Illegal Move! \nPlease provide a legal move.\n')
 		return player
 
-# for row in board:
-	# print row
 
 setupBoard()
 printBoard()
-getInput(1)
-# print checkWinner()
+pl = 1
+while (1<0):
+	pl = getInput(pl)
+	if checkWinner() == 1:
+		print('Player 1 Wins!')
+	elif checkWinner() == 2:
+		print('Player 2 Wins!')
