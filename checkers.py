@@ -3,6 +3,7 @@ board = [[0 for i in xrange(8)] for i in xrange(8)]
 
 
 def setupBoard():
+	'Sets up the board to play checkers'
 	for m in xrange(8):
 		if m%2 == 0:
 			board[0][m] = 1
@@ -14,6 +15,7 @@ def setupBoard():
 			board[7][m] = 2
 
 def printBoard():
+	'Prints the current board configuration'
 	for n in xrange(8):
 		pRow = ''
 		for m in xrange(8):
@@ -78,9 +80,43 @@ def isLegalMove(player, n, m, a, b):
 				return True
 	return False
 
+def checkWinner():
+	'Checks if there is a winner'
+	p1 = True
+	p2 = True
+
+	for row in board:
+		for spot in row:
+			if spot == 1:
+				p2 = False
+			elif spot == 2:
+				p1 = False
+
+	if p1:
+		return 1
+	elif p2:
+		return 2
+	return 0
+
+def getInput(player):
+	move = input('\n Player {}:'.format(player))
+	n, m = move/1000%10, move/100%10
+	a, b = move/10%10, move%10
+	if isLegalMove(player,n,m,a,b):
+		board[n][m] = 0
+		board[a][b] = player
+		newPlayer = player+1
+		if newPlayer > 2:
+			newPlayer -= 2
+		return newPlayer
+	else:
+		print('\n Illegal Move! \nPlease provide a legal move.\n')
+		return player
 
 # for row in board:
 	# print row
 
 setupBoard()
 printBoard()
+getInput(1)
+# print checkWinner()
