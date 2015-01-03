@@ -17,8 +17,9 @@ def setupBoard():
 
 def printBoard():
 	'Prints the current board configuration'
+	print('   0 1 2 3 4 5 6 7\n')
 	for n in xrange(8):
-		pRow = ''
+		pRow = '{}  '.format(n)
 		for m in xrange(8):
 			if board[n][m] == 0:
 				if (n+m)%2 == 0:
@@ -29,7 +30,7 @@ def printBoard():
 				pRow += 'X '
 			elif board[n][m] == 2:
 				pRow += 'O '
-		print pRow
+		print(pRow)
 
 def canMove(player,n,m):
 	if n > 7 or n < 0 or m > 7 or m < 0:
