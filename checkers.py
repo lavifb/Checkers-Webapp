@@ -1,3 +1,4 @@
+from sys import exit
 
 board = [[0 for i in xrange(8)] for i in xrange(8)]
 
@@ -108,9 +109,14 @@ def makeMove(player,n,m,a,b):
 		board[row][col] = 0
 
 def getInput(player):
-	move = input('\n Player {}:'.format(player))
-	n, m = move/1000%10, move/100%10
-	a, b = move/10%10, move%10
+	move = str(raw_input('\n Player {}:'.format(player)))
+	if move == 'q' or move == 'quit':
+		exit(0)
+	if type(move) != type(1):
+		print('\n Illegal Move! \nPlease provide a legal move.\n')
+		return player
+	n, m = int(move[0]), int(move[1])
+	a, b = int(move[2]), int(move[3])
 	if isLegalMove(player,n,m,a,b):
 		makeMove(player,n,m,a,b)
 		newPlayer = player+1
