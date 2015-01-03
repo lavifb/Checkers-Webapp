@@ -130,6 +130,8 @@ while (1>0):
 	printBoard()
 	if checkWinner() == 1:
 		print('Player 1 Wins!')
+		break
 	elif checkWinner() == 2:
 		print('Player 2 Wins!')
+		break
 
