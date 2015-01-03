@@ -87,9 +87,9 @@ def checkWinner():
 
 	for row in xrange(8):
 		for col in xrange(8):
-			if board[row][col] == 1 and canMove(1,row,col):
+			if p2 and board[row][col] == 1 and canMove(1,row,col):
 				p2 = False
-			elif board[row][col] == 2 and canMove(2,row,col):
+			elif p1 and board[row][col] == 2 and canMove(2,row,col):
 				p1 = False
 
 	if p1:
