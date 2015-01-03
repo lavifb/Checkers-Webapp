@@ -31,6 +31,8 @@ def printBoard():
 		print pRow
 
 def canMove(player,n,m):
+	if n > 7 or n < 0 or m > 7 or m < 0:
+		return False
 	if player == 1:
 		if board[n][m] == 1:
 			if board[(n+1)%8][(m+1)%8] == 0 or board[(n+1)%8][(m-1)%8] == 0:
@@ -39,10 +41,6 @@ def canMove(player,n,m):
 				return True
 			elif board[(n+1)%8][(m-1)%8] == 2 and board[(n+2)%8][(m-2)%8] == 0:
 				return True
-			else:
-				return False
-		else:
-			return False
 	elif player == 2:
 		if board[n][m] == 1:
 			if board[(n-1)%8][(m+1)%8] == 0 or board[(n-1)%8][(m-1)%8] == 0:
@@ -51,12 +49,7 @@ def canMove(player,n,m):
 				return True
 			elif board[(n-1)%8][(m-1)%8] == 1 and board[(n-2)%8][(m-2)%8] == 0:
 				return True
-			else:
-				return False
-		else:
-			return False
-	else:
-		return False
+	return False
 
 def isLegalMove(player, n, m, a, b):
 	if player != 1 and player != 2:
