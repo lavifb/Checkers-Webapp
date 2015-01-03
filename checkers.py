@@ -129,6 +129,7 @@ def getInput(player):
 		return player
 
 
+# board = [[1, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 2, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0]]
 setupBoard()
 printBoard()
 
@@ -137,10 +138,10 @@ while (1>0):
 	pl = getInput(pl)
 	printBoard()
 	winner = checkWinner()
-	if winner == 1:
+	if winner == 1 and pl == 2:
 		print(' Player 1 Wins!')
 		break
-	elif winner == 2:
+	elif winner == 2 and pl == 1:
 		print(' Player 2 Wins!')
 		break
 
