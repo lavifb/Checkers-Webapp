@@ -104,7 +104,7 @@ def makeMove(player,n,m,a,b):
 
 def getInput(player):
 	move = raw_input('\n Player {}:'.format(player))
-	if move == 'q':
+	if move == 'q' or move == 'quit':
 		exit(0)
 	if type(move) != type(1):
 		print('\n Illegal Move! \nPlease provide a legal move.\n')
