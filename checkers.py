@@ -33,11 +33,11 @@ def printBoard():
 def canMove(player,m,n):
 	if player == 1:
 		if board[m][n] == 1:
-			if board[m+1][n+1] == 0 or board[m+1][n-1] == 0:
+			if board[(m+1)%8][(n+1)%8] == 0 or board[(m+1)%8][(n-1)%8] == 0:
 				return True
-			elif board[m+1][n+1] == 2 and board[m+2][n+2] == 0:
+			elif board[(m+1)%8][(n+1)%8] == 2 and board[(m+2)%8][(n+2)%8] == 0:
 				return True
-			elif board[m+1][n-1] == 2 and board[m+2][n-2] == 0:
+			elif board[(m+1)%8][(n-1)%8] == 2 and board[(m+2)%8][(n-2)%8] == 0:
 				return True
 			else:
 				return False
@@ -45,11 +45,11 @@ def canMove(player,m,n):
 			return False
 	elif player == 2:
 		if board[m][n] == 1:
-			if board[m-1][n+1] == 0 or board[m-1][n-1] == 0:
+			if board[(m-1)%8][(n+1)%8] == 0 or board[(m-1)%8][(n-1)%8] == 0:
 				return True
-			elif board[m-1][n+1] == 1 and board[m-2][n+2] == 0:
+			elif board[(m-1)%8][(n+1)%8] == 1 and board[(m-2)%8][(n+2)%8] == 0:
 				return True
-			elif board[m-1][n-1] == 1 and board[m-2][n-2] == 0:
+			elif board[(m-1)%8][(n-1)%8] == 1 and board[(m-2)%8][(n-2)%8] == 0:
 				return True
 			else:
 				return False
@@ -85,11 +85,11 @@ def checkWinner():
 	p1 = True
 	p2 = True
 
-	for row in board:
-		for spot in row:
-			if spot == 1:
+	for row in xrange(8):
+		for col in xrange(8):
+			if board[row][col] == 1 and canMove(1,row,col):
 				p2 = False
-			elif spot == 2:
+			elif board[row][col] == 2 and canMove(2,row,col):
 				p1 = False
 
 	if p1:
@@ -98,13 +98,20 @@ def checkWinner():
 		return 2
 	return 0
 
+def makeMove(player,n,m,a,b):
+	board[n][m] = 0
+	board[a][b] = player
+	if (a+n)%2 == 0:
+		row = (n+a)/2
+		col = (m+b)/2
+		board[row][col] = 0
+
 def getInput(player):
 	move = input('\n Player {}:'.format(player))
 	n, m = move/1000%10, move/100%10
 	a, b = move/10%10, move%10
 	if isLegalMove(player,n,m,a,b):
-		board[n][m] = 0
-		board[a][b] = player
+		makeMove(player,n,m,a,b)
 		newPlayer = player+1
 		if newPlayer > 2:
 			newPlayer -= 2
