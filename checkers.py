@@ -30,26 +30,26 @@ def printBoard():
 				pRow += 'O '
 		print pRow
 
-def canMove(player,m,n):
+def canMove(player,n,m):
 	if player == 1:
-		if board[m][n] == 1:
-			if board[(m+1)%8][(n+1)%8] == 0 or board[(m+1)%8][(n-1)%8] == 0:
+		if board[n][m] == 1:
+			if board[(n+1)%8][(m+1)%8] == 0 or board[(n+1)%8][(m-1)%8] == 0:
 				return True
-			elif board[(m+1)%8][(n+1)%8] == 2 and board[(m+2)%8][(n+2)%8] == 0:
+			elif board[(n+1)%8][(m+1)%8] == 2 and board[(n+2)%8][(m+2)%8] == 0:
 				return True
-			elif board[(m+1)%8][(n-1)%8] == 2 and board[(m+2)%8][(n-2)%8] == 0:
+			elif board[(n+1)%8][(m-1)%8] == 2 and board[(n+2)%8][(m-2)%8] == 0:
 				return True
 			else:
 				return False
 		else:
 			return False
 	elif player == 2:
-		if board[m][n] == 1:
-			if board[(m-1)%8][(n+1)%8] == 0 or board[(m-1)%8][(n-1)%8] == 0:
+		if board[n][m] == 1:
+			if board[(n-1)%8][(m+1)%8] == 0 or board[(n-1)%8][(m-1)%8] == 0:
 				return True
-			elif board[(m-1)%8][(n+1)%8] == 1 and board[(m-2)%8][(n+2)%8] == 0:
+			elif board[(n-1)%8][(m+1)%8] == 1 and board[(n-2)%8][(m+2)%8] == 0:
 				return True
-			elif board[(m-1)%8][(n-1)%8] == 1 and board[(m-2)%8][(n-2)%8] == 0:
+			elif board[(n-1)%8][(m-1)%8] == 1 and board[(n-2)%8][(m-2)%8] == 0:
 				return True
 			else:
 				return False
