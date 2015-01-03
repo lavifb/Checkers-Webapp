@@ -106,7 +106,7 @@ def getInput(player):
 	move = str(raw_input('\n Player {}:'.format(player)))
 	if move == 'q' or move == 'quit':
 		exit(0)
-	if type(move) != type(1):
+	if len(move) != 4:
 		print('\n Illegal Move! \nPlease provide a legal move.\n')
 		return player
 	n, m = int(move[0]), int(move[1])
@@ -131,9 +131,9 @@ while (1>0):
 	printBoard()
 	winner = checkWinner()
 	if winner == 1:
-		print('Player 1 Wins!')
+		print(' Player 1 Wins!')
 		break
 	elif winner == 2:
-		print('Player 2 Wins!')
+		print(' Player 2 Wins!')
 		break
 
