@@ -97,8 +97,8 @@ def makeMove(player,n,m,a,b):
 	board[n][m] = 0
 	board[a][b] = player
 	if (a+n)%2 == 0:
-		row = (n+a)/2
-		col = (m+b)/2
+		row = ((n+a)/2)%8
+		col = ((m+b)/2)%8
 		board[row][col] = 0
 
 def getInput(player):
