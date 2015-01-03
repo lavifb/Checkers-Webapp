@@ -42,7 +42,7 @@ def canMove(player,n,m):
 			elif board[(n+1)%8][(m-1)%8] == 2 and board[(n+2)%8][(m-2)%8] == 0:
 				return True
 	elif player == 2:
-		if board[n][m] == 1:
+		if board[n][m] == 2:
 			if board[(n-1)%8][(m+1)%8] == 0 or board[(n-1)%8][(m-1)%8] == 0:
 				return True
 			elif board[(n-1)%8][(m+1)%8] == 1 and board[(n-2)%8][(m+2)%8] == 0:
@@ -81,8 +81,10 @@ def checkWinner():
 	for row in xrange(8):
 		for col in xrange(8):
 			if p2 and board[row][col] == 1 and canMove(1,row,col):
+				# print('p2 {0} {1}'.format(row, col))
 				p2 = False
 			elif p1 and board[row][col] == 2 and canMove(2,row,col):
+				# print('p1 {0} {1}'.format(row, col))
 				p1 = False
 
 	if p1:
@@ -121,10 +123,11 @@ pl = 1
 while (1>0):
 	pl = getInput(pl)
 	printBoard()
-	if checkWinner() == 1:
+	winner = checkWinner()
+	if winner == 1:
 		print('Player 1 Wins!')
 		break
-	elif checkWinner() == 2:
+	elif winner == 2:
 		print('Player 2 Wins!')
 		break
 
