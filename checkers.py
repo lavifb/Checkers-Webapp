@@ -118,8 +118,9 @@ setupBoard()
 printBoard()
 
 pl = 1
-while (1<0):
+while (1>0):
 	pl = getInput(pl)
+	printBoard()
 	if checkWinner() == 1:
 		print('Player 1 Wins!')
 	elif checkWinner() == 2:
