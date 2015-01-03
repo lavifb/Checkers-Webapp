@@ -17,7 +17,7 @@ def setupBoard():
 
 def printBoard():
 	'Prints the current board configuration'
-	print('   0 1 2 3 4 5 6 7\n')
+	print('\n   0 1 2 3 4 5 6 7\n')
 	for n in xrange(8):
 		pRow = '{}  '.format(n)
 		for m in xrange(8):
@@ -104,9 +104,9 @@ def makeMove(player,n,m,a,b):
 		else:
 			row = (n-1)%8
 		if b == (m+2)%8:
-			col = m+1
+			col = (m+1)%8
 		else:
-			col = m-1
+			col = (m-1)%8
 		board[row][col] = 0
 
 def getInput(player):
